@@ -2,3 +2,4 @@ archive.py
 first_dispatcher.py
 settings.py
 result.txt
+__pycache__
