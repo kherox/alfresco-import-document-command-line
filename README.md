@@ -1,8 +1,8 @@
 # alfresco-import-document-command-line
 
-This program help you to export all alfresco content into ouput file
+<p>This <strong>app</strong> help alfresco developper to export all folder structure .</p>
 
-usage: main.py [-h] -sn SERVICENAME [-hn HOSTNAME][-rf root_folder]
+usage: python main.py [-h] -sn SERVICENAME [-hn HOSTNAME][-rf root_folder]
 [-bsf BASE_STORAGE_FOLDER][-u username] [-p PASSWORD] -o
 OUTPUT
 
@@ -17,4 +17,12 @@ Storage path for local system <br>
 -u USERNAME, --username USERNAME Alfresco auth username <br>
 -p PASSWORD, --password PASSWORD Alfresco auth password <br>
 -o OUTPUT, --output OUTPUT Output file <br>
+</p>
+
+<h4> Explain </h4>
+
+<p>
+<strong> SERVICENAME </strong>: Is endpoint you want to crawl <br>
+<strong> ROOT_FOLDER </strong>: Is base endpoint <br>
+Example : ROOT_FOLDER : DSI , SERVICENAME : Network <br>
 </p>
