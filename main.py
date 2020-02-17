@@ -16,7 +16,7 @@ class FirstDispatcher():
         self.headers = self.setHeader(args.username, args.password)
         output = open(args.output, 'w')
         self.output = csv.DictWriter(
-            output, ['name', 'url', 'id', 'title', 'filetype'])
+            output, ['name', 'url', 'id', 'title', 'is_folder'], delimiter=";")
         self.output.writeheader()
         self.args = args
         self.dispatch(args)
@@ -107,12 +107,12 @@ class FirstDispatcher():
 
                 path = base_url + "/" + node
                 output = {"name": node,  "url": path, "id": object_id,
-                          "title": title, "filetype": "is_folder"}
+                          "title": title, "is_folder": 1}
 
             else:
                 path = base_url + "/" + node
                 output = {"name": node,  "url": path, "id": object_id,
-                          "title": title, "filetype": "is_file"}
+                          "title": title, "is_folder": 0}
 
             self.output.writerow(output)
 
