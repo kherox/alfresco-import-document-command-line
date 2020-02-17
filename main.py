@@ -6,6 +6,7 @@ import sys
 import os
 import requests
 import base64
+import csv
 
 
 class FirstDispatcher():
@@ -13,7 +14,10 @@ class FirstDispatcher():
     def __init__(self, args):
         self.base_folder_url = "{}/alfresco/api/-default-/public/cmis/versions/1.1/browser/root/{}"
         self.headers = self.setHeader(args.username, args.password)
-        self.output = open(args.output, 'w')
+        output = open(args.output, 'w')
+        self.output = csv.DictWriter(
+            output, ['name', 'url', 'id', 'title', 'filetype'])
+        self.output.writeheader()
         self.args = args
         self.dispatch(args)
 
@@ -95,19 +99,22 @@ class FirstDispatcher():
                     object_id = item["object"]["properties"][it]['value']
                 if it == "cm:title":
                     title = item["object"]["properties"][it]['value']
-            output = ""
+            #'name', 'url', 'id', 'filetype'
+            output = {}
             if isFolder:
                 nodes.append({"path": base_url + "/" +
                               node, "is_folder": isFolder})
-                base_ = path.split("/")[2]
 
-                path = base_ + "/" + node
-                output = node + ";" + path + ";" + object_id + ";" + title + ";is_folder"
+                path = base_url + "/" + node
+                output = {"name": node,  "url": path, "id": object_id,
+                          "title": title, "filetype": "is_folder"}
 
             else:
                 path = base_url + "/" + node
-                output = node + ";" + path + ";" + object_id + ";is_file"
-            self.output.write(output + "\r\n")
+                output = {"name": node,  "url": path, "id": object_id,
+                          "title": title, "filetype": "is_file"}
+
+            self.output.writerow(output)
 
         return nodes
 
@@ -116,8 +123,7 @@ class FirstDispatcher():
         url = self.build_url(path)
         nodes = self.node_hierachy(self.get_root_node_children(url))
         for node in nodes:
-            self.recursive_folder_loader(node["path"], node["name"], False)
-        self.output.close()
+            self.recursive_folder_loader(node["path"][1:], node["name"], False)
 
     def build_url(self, path):
         return self.base_folder_url.format(self.args.hostname, path)

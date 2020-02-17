@@ -16,7 +16,7 @@ OUTPUT
 Storage path for local system <br>
 -u USERNAME, --username USERNAME Alfresco auth username <br>
 -p PASSWORD, --password PASSWORD Alfresco auth password <br>
--o OUTPUT, --output OUTPUT Output file <br>
+-o OUTPUT, --output OUTPUT Output file in csv <br>
 </p>
 
 <h4> Explain </h4>
