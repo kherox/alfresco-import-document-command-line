@@ -119,7 +119,11 @@ class FirstDispatcher():
         return nodes
 
     def dispatch(self, args):
-        path = '{}/{}'.format(args.root_folder, args.servicename)
+        path = ""
+        if args.servicename is None:
+            path = args.root_folder
+        else:
+            path = "{}/{}".format(args.root_folder, args.servicename)
         url = self.build_url(path)
         nodes = self.node_hierachy(self.get_root_node_children(url))
         for node in nodes:
@@ -136,8 +140,6 @@ def arg_parser():
     parser.add_argument('-hn', '--hostname',
                         help='Alfresco host url or hostname')
     parser.add_argument('-rf', '--root_folder', help='Alfresco base folder')
-    # parser.add_argument('-bsf', '--base_storage_folder',
-    #                     help='Storage path for local system')
     parser.add_argument('-u', '--username', help='Alfresco auth username')
     parser.add_argument('-p', '--password', help='Alfresco auth password')
     parser.add_argument('-o', '--output', help='Output file', required=True)
