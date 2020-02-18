@@ -136,8 +136,8 @@ def arg_parser():
     parser.add_argument('-hn', '--hostname',
                         help='Alfresco host url or hostname')
     parser.add_argument('-rf', '--root_folder', help='Alfresco base folder')
-    parser.add_argument('-bsf', '--base_storage_folder',
-                        help='Storage path for local system')
+    # parser.add_argument('-bsf', '--base_storage_folder',
+    #                     help='Storage path for local system')
     parser.add_argument('-u', '--username', help='Alfresco auth username')
     parser.add_argument('-p', '--password', help='Alfresco auth password')
     parser.add_argument('-o', '--output', help='Output file', required=True)

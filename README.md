@@ -1,5 +1,10 @@
 # alfresco-import-document-command-line
 
+compatibility : python3.5 + <br>
+
+Dependencies : <br>
+pip install requests <br>
+
 <p>This <strong>app</strong> help alfresco developper to export all folder structure .</p>
 
 usage: python main.py [-h] -sn SERVICENAME [-hn HOSTNAME][-rf root_folder]
