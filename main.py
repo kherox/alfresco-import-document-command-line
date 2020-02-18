@@ -62,7 +62,7 @@ class FirstDispatcher():
                           "title": title})
         return nodes
 
-    def recursive_folder_loader(self, path, h, autoload):
+    def recursive_folder_loader(self, path, name, autoload):
         # Build URL
         base_url = None
         if autoload:
@@ -72,7 +72,7 @@ class FirstDispatcher():
 
         response = self.get_root_node_children(base_url)
         if response is not None:
-            nodes = self.isFolders(response, base_url, h)
+            nodes = self.isFolders(response, base_url, name)
             if nodes:
                 for node in nodes:
                     if node['is_folder']:
@@ -135,8 +135,7 @@ class FirstDispatcher():
 
 def arg_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-sn', '--servicename',
-                        help='Service name', required=True)
+    parser.add_argument('-sn', '--servicename', help='Service name')
     parser.add_argument('-hn', '--hostname',
                         help='Alfresco host url or hostname')
     parser.add_argument('-rf', '--root_folder', help='Alfresco base folder')
