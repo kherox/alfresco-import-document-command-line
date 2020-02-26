@@ -77,7 +77,7 @@ class FirstDispatcher():
                 for node in nodes:
                     if node['is_folder']:
                         self.recursive_folder_loader(
-                            node['path'], node['path'], True)
+                            node['path'], node['path'], True, node['object_id'], node['title'])
         else:
             output = {"name": name,  "url": base_url, "id": object_id,
                       "title": title, "is_folder": 1}
@@ -106,8 +106,8 @@ class FirstDispatcher():
             #'name', 'url', 'id', 'filetype'
             output = {}
             if isFolder:
-                nodes.append({"path": base_url + "/" +
-                              node, "is_folder": isFolder})
+                nodes.append({"title": title, "path": base_url + "/" +
+                              node, "is_folder": isFolder, "name": node, "object_id": object_id})
 
                 path = base_url + "/" + node
                 output = {"name": node,  "url": path, "id": object_id,
