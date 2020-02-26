@@ -62,7 +62,7 @@ class FirstDispatcher():
                           "title": title})
         return nodes
 
-    def recursive_folder_loader(self, path, name, autoload, object_id):
+    def recursive_folder_loader(self, path, name, autoload, object_id, title):
         # Build URL
         base_url = None
         if autoload:
@@ -80,7 +80,7 @@ class FirstDispatcher():
                             node['path'], node['path'], True)
         else:
             output = {"name": name,  "url": base_url, "id": object_id,
-                      "title": name, "is_folder": 1}
+                      "title": title, "is_folder": 1}
             self.output.writerow(output)
 
     def isFolders(self, folders, base_url, ph):
@@ -132,7 +132,7 @@ class FirstDispatcher():
         nodes = self.node_hierachy(self.get_root_node_children(url))
         for node in nodes:
             self.recursive_folder_loader(
-                node["path"][1:], node["name"], False, node['object_id'])
+                node["path"][1:], node["name"], False, node['object_id'], node['title'])
 
     def build_url(self, path):
         return self.base_folder_url.format(self.args.hostname, path)
