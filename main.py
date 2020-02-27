@@ -63,7 +63,6 @@ class FirstDispatcher():
         return nodes
 
     def save_base_folder(self, node):
-        print(node)
         self.output.writerow(node)
 
     def recursive_folder_loader(self, path, name, autoload, object_id, title, isFolder):
